@@ -1,39 +1,19 @@
 
-## Web inspector and console, your two new best friends
+## Hello to Javascript
 
-First, open up a window in Google Chrome and go to https://google.com. Hit `ctrl + click` anywhere on the page to open up a menu, then choose the last item, "Inspect". A sidebar should pop up that looks something like this:
+Part one of a three-part introduction to D3 at NICAR 2019
 
-< IMAGE OF INSPECTOR ON GOOGLE.COM >
-
-If you clicked on an element, it may now be highlighted blue on your page. This is your **web inspector**. It's used to look at HTML elements on the page and see their attributes, such as their tag name, id, classes and pixel dimensions. Web inspectors are also super handy because they allow you to change HTML elements and CSS properties in real time on the page, without having to re-run your code. 
-
-You can inspect any element on the page by clicking the icon at the top left of the sidebar that looks like a cursor in a box, then hovering over or clicking on that element. The elements will highlight on the page as you do so. All modern browsers have a version of a web inspector (my favorite is Chrome, but that's just personal preference).
-
-Looking back at the inspector sidebar, you'll see that it has a top menu, and that you are currently on the `Elements` tab. If you click on `Console`, it will take you to the javascript console. 
-
-Your javascript console will be a critical part of debugging your code, and you can write directly into it to test out new js line-by-line, or even learning new commands.
-
-Let's try it out. In your console, next to the blue right arrow, type:
+## Math in Javascript
 
 ```js
-document.getElementById("lga").innerHTML = "Hello world!";
+5 + 4 // 9
+
+Math.round(3.14) // 3
 ```
-
-So what happened? The `document` object is the HTML web page, so the first thing this line does is grabs the `document`. Next, the `getElementById()` method tells the `document` to grab whatever has that ID in the parentheses. If you inspect the area where your new text sits, you will see that the `div` element has and `id` of `lga` (denoted as `#lga`).
-
-Once the document gets the element with the specified ID, we tell it to grab the innerHTML and change it to something else.
-
-Often when working in your HTML files, you will want to write values out to your console so you can check your work. To do so you can use the `console.log()` function, putting whatever you want to write out between those parenthesis.
 
 ## Writing JS not in your console
 
-However, most of your time will be spent writing js in `.js` file. So lets look at how to set that up. Go to your finder and open up the class folder. double-click on the `index.html` file. It should open up into your web browser.
-
-In it you will see a basic HTML setup, with a link to a CSS stylesheet at the top in the `<head>`, a few elements in the `<body>` tag, and then a `<script>` tag linking to a `.js` file at the end, just before the closing `<html>` tag. 
-
-*Note:  You can technically place `<script>` tags anywhere in your page, but putting them at the bottom of the page ensures that all HTML elements will be rendered on the page before the javascript tries to operate on it.*
-
-Go back to the folder and open up the file called `main.js` in your favorite text editor. Copy the following into the file, hit save, then refresh your web page.
+Go to the `hello-javascript` folder and open up the file called `main.js` in your favorite text editor. Type the following into the file, hit save, then refresh your web page.
 
 ```js
 console.log("Hello world!");
@@ -46,16 +26,15 @@ Yes! Let's talk about data.
 
 ## Variables
 
-Variables store data. They can store numbers, strings, objects and the output of functions. To declare a variable, type `var myVar = "something";` then, you can use it or reassign its value later 
+Variables store data. They can store numbers, strings, objects and the output of functions.
 
 ```js
-var myVar = "something";
-console.log("My favorite animals are " + myVar);
-// My favorite animals are something
+var myBool = true;
+var myNum = 3;
+var myString = "cats";
 
-myVar = "birds"
-console.log("My favorite animals are " + myVar);
-// My favorite animals are birds
+console.log("I love my " + myString); // I love my cats
+
 ```
 
 ## Lists and objects
@@ -66,17 +45,17 @@ An array is simply a list of things (strings, numbers, objects or even other arr
 
 ```js
 var numbers = [1,2,3,4,5]
-var bluths = ["dogs","cats","ferrets","fish","hamsters"]
+var animals = ["dogs","cats","ferrets","fish","hamsters"]
 ```
 
 You can access the items inside an array by their index number. Indexes always start at zero
 
 ```js
-bluths[1]
+animals[1]
 // cats
 ```
 
-A javascript object (called a dictionary in some other languages) is defined by a key/value structure inside curly brackets.
+A javascript object is defined by a key/value structure inside curly brackets.
 
 ```js
 var person = {
@@ -87,18 +66,27 @@ var person = {
 }
 ```
 
-You can access the values of an object by using the correct key.
+You can access the values of an object by using the correct key, using either a dot or brackets and quotes
 
 ```js
-person["name"]
-// Michael
+person.name // Michael
+// This is the same as person["name"]
 ```
 
 ## What the heck is JSON
 
 JSON, pronounced jay-son, is a type of data file. Not unlike excel or CSV, it is a syntax for storing and exchanging data. It is made up of a combination of arrays and objects
 
-Here is a simple sample, an array of javascript objects:
+Say you have a spreadsheet that looks like this:
+
+| name    | job      | num_children | quote                                     |
+|---------|----------|--------------|-------------------------------------------|
+| Michael | CEO      | 1            | I don't know what I expected.             |
+| GOB     | Magician | 1            | I've made a huge mistake.                 |
+| Lindsay | Activist | 1            | It's vodka. It goes bad once it's opened. |
+| Buster  | Army     | 0            | I'm a monster!                            |
+
+The JSON equivalent of this spreadsheet would be:
 
 ```js
 var bluths = [
@@ -126,15 +114,6 @@ var bluths = [
 ]
 ```
 
-You can think of this as an equivalent to a spreadsheet that looks like this:
-
-| name    | job      | num_children | quote                                     |
-|---------|----------|--------------|-------------------------------------------|
-| Michael | CEO      | 1            | I don't know what I expected.             |
-| GOB     | Magician | 1            | I've made a huge mistake.                 |
-| Lindsay | Activist | 1            | It's vodka. It goes bad once it's opened. |
-| Buster  | Army     | 0            | I'm a monster!                            |
-
 ### So why use JSON when I can just use a spreadsheet? 
 
 Because JSON supports "nested" data, which allows for more freedom when representing complex data.
@@ -159,6 +138,8 @@ Because JSON supports "nested" data, which allows for more freedom when represen
 ```
 
 ## For loops
+
+You will use many `for` loops when working with data. For loops allow you to iterate through data in order to operate on it.
 
 Copy the following and paste it into your `main.js`
 
@@ -187,14 +168,28 @@ var bluths = [
     }
 ];
 
-bluths.forEach(function(obj) { 
-    console.log(obj.name); 
+bluths.forEach(function(bluth) { 
+    console.log(bluth.name); 
 });
 ```
 
 Save your file and hit refresh on your browser window. Check your console, and you should see the four names printed out on separate lines. 
 
-## If statements ?
+## If statements
+
+These are conditional statements. It means they will do different actions based on whether a statement is evaluated as true or false. 
+
+```js
+
+bluths.forEach(function(bluth) {
+    if (bluth.num_children > 0) {
+        console.log(bluth.name + " has children")
+    } else {
+        console.log(bluth.name + " does not have children")
+    }
+})
+
+```
 
 ## Put it all together 
 
@@ -227,11 +222,11 @@ Next, paste this code into your `main.js`:
 ```js
 var table = document.getElementById('bluth-table');
 
-bluths.forEach(function(obj) { 
+bluths.forEach(function(bluth) { 
     var tableRow = table.insertRow(-1);
-    for(i in obj){
+    for(i in bluth){
         var tableCell = tableRow.insertCell(-1);
-        tableCell.innerHTML = obj[i];
+        tableCell.innerHTML = bluth[i];
     }
 });
 ```
@@ -247,7 +242,7 @@ table = document.getElementById('bluth-table')
 Next, we start our for loop. You'll notice that this looks different than the for loop we used earlier. There are probably 10 different ways to write a for loop in JavaScript and this is another one of my favorites because it's very explicit about what it's doing. For each object in our object list, perform this function or code block. We'll talk more on functions in a bit- for now just know that functions are blocks of code that perform a task.
 
 ```js
-bluths.forEach(function(obj) { 
+bluths.forEach(function(bluth) { 
 ```
 Then we create another variable `tableRow`. This creates a new line for each person.
 
@@ -258,7 +253,7 @@ var tableRow = table.insertRow(-1);
 Geeze louise, another for loop *within* a for loop?! You betcha another for loop! This time we're looping through the attributes within our pet object. So the first time this loop runs it's grabbing the name, the second time it's grabbing the type, next the age and finally the color.
 
 ```js
-for(i in obj){
+for(i in bluth){
 ```
 
 For all of the pet attributes we're looping through, we make another variable for the table cells where our pet data points will live. This line of code tells the DOM to find where we made our table row in the first loop a couple of steps back, and to insert a new table cell. 
@@ -272,8 +267,9 @@ var tableCell = tableRow.insertCell(-1);
 This is where we tell our table what exactly we want to add. First, we tell the DOM to grab the `tableCell` we created a second ago. Next, that `innerHTML` preps it for whatever text or HTML snippet we wnant to stick in there. In this case, we want to add the data in our object. Now for a little bit of JavaScript magic. We get this data by getting the object we're looping and telling it to grab the data inside with `[i]`. Square brackets next to an object is a JavaScript convention that indicates we want to break into that object and grab the data inside.
 
 ```js
-tableCell.innerHTML = obj[i];
+tableCell.innerHTML = bluth[i];
 ```
+
 
 ### Bonus round! Functions
 

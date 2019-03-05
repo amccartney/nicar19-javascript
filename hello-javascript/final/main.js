@@ -38,7 +38,6 @@ var plants = [
         "Type": "succulent",
         "Color": "Dark green, spiky succulent with white stripes",
     },
-
 ]
 
 
